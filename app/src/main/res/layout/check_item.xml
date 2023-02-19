@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    >
+
+    <data>
+        <variable
+            name="check"
+            type="bes.max.carmaintenance.model.Check"/>
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardElevation="4dp"
+        app:cardCornerRadius="4dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/check_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@{check.checkName}"
+                />
+            <TextView
+                android:id="@+id/check_mileage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@{check.checkMileage}"
+                />
+            <TextView
+                android:id="@+id/check_date"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@{check.checkDate}"
+                />
+            <TextView
+                android:id="@+id/check_price"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@{check.checkPrice}"
+                />
+            <TextView
+                android:id="@+id/check_company"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@{check.checkCompany}"
+                />
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</layout>
