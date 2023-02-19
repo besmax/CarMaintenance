@@ -11,5 +11,4 @@ data class Check(
         DateTimeFormatter.ofPattern("dd-MM-yyyy")),
     var checkPrice: Long = 0L,
     var checkCompany: String = ""
-
 )
