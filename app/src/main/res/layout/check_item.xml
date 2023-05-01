@@ -37,7 +37,7 @@
                 android:id="@+id/check_date"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@{check.checkDate}"
+                android:text="@{check.checkDate.toString()}"
                 />
             <TextView
                 android:id="@+id/check_price"

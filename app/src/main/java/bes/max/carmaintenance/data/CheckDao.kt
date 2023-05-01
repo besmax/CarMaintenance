@@ -1,4 +1,4 @@
-package bes.max.carmaintenance
+package bes.max.carmaintenance.data
 
 import androidx.lifecycle.LiveData
 import androidx.room.*

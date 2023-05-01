@@ -10,20 +10,20 @@ import java.time.format.DateTimeFormatter
 data class Check(
 
     @PrimaryKey(autoGenerate = true)
-    var checkId: Long = 0L,
+    var checkId: Int = 0,
 
     @ColumnInfo(name = "check_name")
     var checkName: String = "",
 
     @ColumnInfo(name = "check_mileage")
-    var checkMileage: Long = 0L,
+    var checkMileage: Int = 0,
 
     @ColumnInfo(name = "check_date")
     var checkDate: LocalDate = LocalDate.parse("31-12-2018",
         DateTimeFormatter.ofPattern("dd-MM-yyyy")),
 
     @ColumnInfo(name = "check_price")
-    var checkPrice: Long = 0L,
+    var checkPrice: Int = 0,
 
     @ColumnInfo(name = "check_company")
     var checkCompany: String = ""
