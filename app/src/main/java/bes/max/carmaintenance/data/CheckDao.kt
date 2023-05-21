@@ -19,9 +19,9 @@ interface CheckDao {
     @Delete
     suspend fun delete(check: Check)
 
-    @Query("SELECT * FROM check_table ORDER BY checkId DESC")
+    @Query("SELECT * FROM checks_table ORDER BY check_id DESC")
     fun getAll() : LiveData<List<Check>>
 
-    @Query("SELECT * FROM check_table WHERE checkId = :checkId")
+    @Query("SELECT * FROM checks_table WHERE check_id = :checkId")
     fun get(checkId: Long) : LiveData<Check>
 }

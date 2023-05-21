@@ -6,7 +6,7 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import bes.max.carmaintenance.model.Check
 
-@Database(entities = [Check::class], version = 1, exportSchema = false)
+@Database(entities = [Check::class], version = 2, exportSchema = false)
 abstract class CheckDatabase : RoomDatabase() {
 
     abstract val checkDao: CheckDao
