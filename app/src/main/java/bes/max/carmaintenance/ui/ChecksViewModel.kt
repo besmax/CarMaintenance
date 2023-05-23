@@ -20,7 +20,7 @@ class ChecksViewModel(val dao: CheckDao) : ViewModel() {
         getDataFromGoogleSheets()
     }
 
-    private fun getDataFromGoogleSheets() {
+    fun getDataFromGoogleSheets() {
         viewModelScope.launch {
             try {
                 val result = googleSpreadSheetsApiService.getData()

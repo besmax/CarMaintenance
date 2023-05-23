@@ -5,20 +5,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".ui.ChecksFragment">
 
-    <LinearLayout
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        >
-
-        <TextView
-            android:id="@+id/status"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            tools:text="RATATATATAT"
-            android:gravity="center"
-            />
-
+        android:layout_height="match_parent">
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/checks_list"
             android:layout_width="match_parent"
@@ -27,6 +16,14 @@
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             />
 
-    </LinearLayout>
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab_refresh"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end|bottom"
+            android:src="@drawable/ic_refresh"
+            android:contentDescription="@string/fab_refresh"
+            android:layout_margin="16dp" />
+    </FrameLayout>
 
 </layout>
