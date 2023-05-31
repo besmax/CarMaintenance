@@ -10,7 +10,7 @@ import bes.max.carmaintenance.network.GoogleSpreadSheetsApi.googleSpreadSheetsAp
 import bes.max.carmaintenance.network.GoogleSpreadSheetsApiStatus
 import kotlinx.coroutines.launch
 
-class ChecksViewModel(val dao: CheckDao) : ViewModel() {
+class ChecksViewModel(private val dao: CheckDao) : ViewModel() {
 
     val checks = MutableLiveData<List<Check>>()
     val status = MutableLiveData<GoogleSpreadSheetsApiStatus>()
@@ -20,7 +20,7 @@ class ChecksViewModel(val dao: CheckDao) : ViewModel() {
         getDataFromGoogleSheets()
     }
 
-    private fun getDataFromGoogleSheets() {
+    fun getDataFromGoogleSheets() {
         viewModelScope.launch {
             try {
                 val result = googleSpreadSheetsApiService.getData()

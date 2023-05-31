@@ -1,4 +1,4 @@
-package bes.max.carmaintenance.ui
+package bes.max.carmaintenance.ui.controllers
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,6 +9,9 @@ import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.RecyclerView
 import bes.max.carmaintenance.BaseApplication
 import bes.max.carmaintenance.databinding.FragmentChecksBinding
+import bes.max.carmaintenance.ui.CheckItemAdapter
+import bes.max.carmaintenance.ui.ChecksViewModel
+import bes.max.carmaintenance.ui.ChecksViewModelFactory
 
 class ChecksFragment : Fragment() {
 
@@ -40,11 +43,12 @@ class ChecksFragment : Fragment() {
         val adapter = CheckItemAdapter()
         recyclerView.adapter = adapter
 
-        viewModel.status.observe(viewLifecycleOwner) { responseStatus ->
-            binding.status.setText(responseStatus.toString())
-        }
         viewModel.checks.observe(viewLifecycleOwner) { checksList ->
             adapter.submitList(checksList)
+        }
+
+        binding.fab.setOnClickListener {
+            viewModel.getDataFromGoogleSheets()
         }
 
     }

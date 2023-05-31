@@ -1,4 +1,4 @@
-package bes.max.carmaintenance.ui
+package bes.max.carmaintenance.ui.controllers
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

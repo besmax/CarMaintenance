@@ -3,21 +3,17 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".ui.ChecksFragment">
+    tools:context=".ui.controllers.ChecksFragment">
 
-    <LinearLayout
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        >
-
-        <TextView
-            android:id="@+id/status"
-            android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            tools:text="RATATATATAT"
-            android:gravity="center"
-            />
+            android:src="@drawable/ic_refresh"
+            android:layout_gravity="end|bottom"/>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/checks_list"
@@ -26,7 +22,7 @@
             android:layout_marginTop="32dp"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             />
+    </FrameLayout>
 
-    </LinearLayout>
 
 </layout>
