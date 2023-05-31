@@ -15,6 +15,7 @@
             android:src="@drawable/ic_refresh"
             android:layout_gravity="end|bottom"/>
 
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/checks_list"
             android:layout_width="match_parent"
@@ -23,6 +24,5 @@
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             />
     </FrameLayout>
-
 
 </layout>

@@ -22,72 +22,73 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            >
+            android:layout_height="match_parent">
 
-            <TextView
-                android:id="@+id/check_date"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@{check.checkDate}"
-                app:layout_constraintBottom_toTopOf="@id/check_price"
-                app:layout_constraintEnd_toStartOf="@id/check_company"
-                app:layout_constraintHorizontal_bias="0"
-                app:layout_constraintHorizontal_chainStyle="spread_inside"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:text="12.02.1992" />
+        <TextView
+            android:id="@+id/check_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{check.checkDate}"
+            app:layout_constraintBottom_toTopOf="@id/check_company"
+            app:layout_constraintEnd_toStartOf="@id/check_mileage"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintHorizontal_chainStyle="spread_inside"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="12.02.1992" />
 
-            <TextView
-                android:id="@+id/check_company"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:text="@{check.checkCompany}"
-                app:layout_constraintBottom_toTopOf="@id/check_price"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/check_date"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:text="OOO AbraHiyabra"
+        <TextView
+            android:id="@+id/check_company"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
 
-                />
+            android:layout_marginStart="16dp"
+            android:text="@{check.checkCompany}"
+            app:layout_constraintBottom_toTopOf="@id/check_price"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/check_date"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="OOO AbraHiyabra"
 
-            <TextView
-                android:id="@+id/check_mileage"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@{check.checkMileage}"
-                app:layout_constraintBottom_toTopOf="@id/check_name"
-                app:layout_constraintEnd_toStartOf="@id/check_price"
-                app:layout_constraintHorizontal_chainStyle="spread_inside"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/check_company"
-                tools:text="100 000" />
 
-            <TextView
-                android:id="@+id/check_price"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@{check.checkPrice}"
-                app:layout_constraintBottom_toTopOf="@id/check_name"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/check_mileage"
-                app:layout_constraintTop_toBottomOf="@id/check_price"
-                tools:text="10 000" />
+            />
 
-            <TextView
-                android:id="@+id/check_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@{check.checkName}"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/check_price"
-                tools:text="@string/long_string_example" />
+        <TextView
+            android:id="@+id/check_mileage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{check.checkMileage}"
+            app:layout_constraintBottom_toTopOf="@id/check_company"
+            app:layout_constraintEnd_toStartOf="@id/check_price"
+            app:layout_constraintHorizontal_chainStyle="spread_inside"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/check_company"
+            tools:text="100 000" />
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/check_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{check.checkPrice}"
+            app:layout_constraintBottom_toTopOf="@id/check_name"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/check_mileage"
+            app:layout_constraintTop_toBottomOf="@id/check_price"
+            tools:text="10 000" />
 
-    </androidx.cardview.widget.CardView>
+        <TextView
+            android:id="@+id/check_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{check.checkName}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/check_price"
+            tools:text="@string/long_string_example" />
 
-</layout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>
+
+    </layout>
