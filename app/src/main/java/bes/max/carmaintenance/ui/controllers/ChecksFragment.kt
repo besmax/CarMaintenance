@@ -52,10 +52,13 @@ class ChecksFragment : Fragment() {
             viewModel.getDataFromGoogleSheets()
         }
 
-    }
+        binding.fragmentChecksCheckboxSort.setOnCheckedChangeListener { _, isChecked ->
+            if (isChecked) {
+                viewModel.sortByDate()
+                adapter.notifyDataSetChanged()
+            }
+        }
 
-    override fun onResume() {
-        super.onResume()
     }
 
     override fun onDestroyView() {

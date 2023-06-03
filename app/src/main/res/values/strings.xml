@@ -1,7 +1,8 @@
 <resources>
     <string name="app_name">CarMaintenance</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="long_string_example">Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...</string>
+    <string name="long_string_example">Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...</string>
     <string name="fab_refresh">Refresh list of checks</string>
-    >
+    <string name="fragment_checks_button_plan">Plan Check</string>
+    <string name="fragment_checks_checkbox_sort">Sort by date</string>
 </resources>

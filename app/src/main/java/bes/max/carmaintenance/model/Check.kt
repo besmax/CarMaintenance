@@ -2,7 +2,10 @@ package bes.max.carmaintenance.model
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
+import androidx.room.Ignore
 import androidx.room.PrimaryKey
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
 
 @Entity(tableName = "checks_table")
 data class Check(
@@ -24,6 +27,7 @@ data class Check(
     var checkPrice: String = "",
 
     @ColumnInfo(name = "check_company")
-    var checkCompany: String = ""
-
-)
+    var checkCompany: String = "",
+) {
+    val date get() = LocalDate.parse(checkDate, DateTimeFormatter.ofPattern("dd.MM.yyyy"))
+}

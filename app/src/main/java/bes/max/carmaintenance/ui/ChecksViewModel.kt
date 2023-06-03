@@ -42,4 +42,9 @@ class ChecksViewModel(private val dao: CheckDao) : ViewModel() {
         }
     }
 
+    fun sortByDate() {
+        val sortedList = checks.value?.sortedBy { it.date }
+        checks.value = sortedList ?: checks.value
+    }
+
 }
