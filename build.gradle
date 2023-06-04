@@ -2,6 +2,14 @@ buildscript {
     ext.lifecycle_version = "2.5.1"
     ext.room_version = "2.5.0"
     ext.nav_version = '2.5.3'
+
+    repositories {
+        google()
+    }
+    dependencies {
+        def nav_version = "2.5.3"
+        classpath "androidx.navigation:navigation-safe-args-gradle-plugin:$nav_version"
+    }
 }
 
 plugins {

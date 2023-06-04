@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import bes.max.carmaintenance.databinding.CheckItemBinding
 import bes.max.carmaintenance.model.Check
 
-class CheckItemAdapter : ListAdapter<Check, CheckItemAdapter.CheckItemViewHolder>(
+class CheckItemAdapter(private val doOnClick: (checkPosition: Int) -> Unit) : ListAdapter<Check, CheckItemAdapter.CheckItemViewHolder>(
     CheckDiffItemCallback()
 ) {
 
@@ -17,6 +17,7 @@ class CheckItemAdapter : ListAdapter<Check, CheckItemAdapter.CheckItemViewHolder
     override fun onBindViewHolder(holder: CheckItemViewHolder, position: Int) {
         val item = getItem(position)
         holder.bind(item)
+        holder.itemView.setOnClickListener { doOnClick.invoke(position) }
     }
 
     class CheckItemViewHolder(val binding: CheckItemBinding) : RecyclerView.ViewHolder(binding.root) {
