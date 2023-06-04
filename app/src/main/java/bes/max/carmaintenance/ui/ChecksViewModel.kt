@@ -15,6 +15,7 @@ class ChecksViewModel(private val dao: CheckDao) : ViewModel() {
     val checks = MutableLiveData<List<Check>>()
     val status = MutableLiveData<GoogleSpreadSheetsApiStatus>()
     var check: Check? = null
+    var date: String =""
 
 
     init {

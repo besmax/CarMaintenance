@@ -63,6 +63,11 @@ class ChecksFragment : Fragment() {
             }
         }
 
+        binding.fragmentChecksButtonPlan.setOnClickListener {
+            findNavController()
+                .navigate(ChecksFragmentDirections.actionChecksFragmentToNewCheckFragment())
+        }
+
     }
 
     override fun onDestroyView() {
