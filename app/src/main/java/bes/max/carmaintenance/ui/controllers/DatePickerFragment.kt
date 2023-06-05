@@ -7,8 +7,8 @@ import android.widget.DatePicker
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.activityViewModels
 import bes.max.carmaintenance.BaseApplication
-import bes.max.carmaintenance.ui.ChecksViewModel
-import bes.max.carmaintenance.ui.ChecksViewModelFactory
+import bes.max.carmaintenance.ui.viewmodels.ChecksViewModel
+import bes.max.carmaintenance.ui.viewmodels.ChecksViewModelFactory
 import java.util.Calendar
 
 class DatePickerFragment : DialogFragment(), DatePickerDialog.OnDateSetListener {

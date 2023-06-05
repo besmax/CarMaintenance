@@ -15,5 +15,7 @@
 
     <string name="fragment_new_check_work">Планируемые работы</string>
     <string name="fragment_new_check_choose_date">Выберите дату</string>
+    <string name="fragment_new_check_button">Запланировать</string>
+    <string name="fragment_new_check_check">Добавить в календарь</string>
 
 </resources>

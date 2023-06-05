@@ -1,4 +1,4 @@
-package bes.max.carmaintenance.ui
+package bes.max.carmaintenance.ui.viewmodels
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider

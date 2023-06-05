@@ -6,10 +6,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
 import bes.max.carmaintenance.BaseApplication
 import bes.max.carmaintenance.databinding.FragmentNewCheckBinding
-import bes.max.carmaintenance.ui.ChecksViewModel
-import bes.max.carmaintenance.ui.ChecksViewModelFactory
+import bes.max.carmaintenance.ui.viewmodels.ChecksViewModel
+import bes.max.carmaintenance.ui.viewmodels.ChecksViewModelFactory
+import bes.max.carmaintenance.ui.viewmodels.NewCheckViewModel
+import bes.max.carmaintenance.ui.viewmodels.NewCheckViewModelFactory
 
 class NewCheckFragment : Fragment() {
 
@@ -19,6 +22,12 @@ class NewCheckFragment : Fragment() {
     private val viewModel: ChecksViewModel by activityViewModels {
         ChecksViewModelFactory(
             (activity?.application as BaseApplication).checkDatabase.checkDao
+        )
+    }
+
+    private val newCheckViewModel: NewCheckViewModel by viewModels {
+        NewCheckViewModelFactory(
+            (activity?.application as BaseApplication).checkDatabase.plannedCheckDao
         )
     }
 
@@ -38,6 +47,16 @@ class NewCheckFragment : Fragment() {
             binding.fragmentNewCheckChooseDate.setText(viewModel.date)
         }
 
+        binding.fragmentNewCheckButton.setOnClickListener {
+            if (!binding.fragmentNewCheckEditText.text.isNullOrEmpty()) {
+                newCheckViewModel.insertPlannedCheck(
+                    binding.fragmentNewCheckEditText.text.toString(),
+                    viewModel.date
+                )
+                binding.fragmentNewCheckEditText.text.clear()
+            }
+
+        }
 
     }
 

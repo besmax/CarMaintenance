@@ -9,8 +9,8 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.navArgs
 import bes.max.carmaintenance.BaseApplication
 import bes.max.carmaintenance.databinding.FragmentCheckDetailBinding
-import bes.max.carmaintenance.ui.ChecksViewModel
-import bes.max.carmaintenance.ui.ChecksViewModelFactory
+import bes.max.carmaintenance.ui.viewmodels.ChecksViewModel
+import bes.max.carmaintenance.ui.viewmodels.ChecksViewModelFactory
 
 
 class CheckDetailFragment : Fragment() {

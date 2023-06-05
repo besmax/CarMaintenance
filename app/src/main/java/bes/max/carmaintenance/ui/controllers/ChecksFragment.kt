@@ -11,8 +11,8 @@ import androidx.recyclerview.widget.RecyclerView
 import bes.max.carmaintenance.BaseApplication
 import bes.max.carmaintenance.databinding.FragmentChecksBinding
 import bes.max.carmaintenance.ui.CheckItemAdapter
-import bes.max.carmaintenance.ui.ChecksViewModel
-import bes.max.carmaintenance.ui.ChecksViewModelFactory
+import bes.max.carmaintenance.ui.viewmodels.ChecksViewModel
+import bes.max.carmaintenance.ui.viewmodels.ChecksViewModelFactory
 
 class ChecksFragment : Fragment() {
 

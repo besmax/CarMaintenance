@@ -5,11 +5,13 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import bes.max.carmaintenance.model.Check
+import bes.max.carmaintenance.model.PlannedCheck
 
-@Database(entities = [Check::class], version = 2, exportSchema = false)
+@Database(entities = [Check::class, PlannedCheck::class], version = 3, exportSchema = false)
 abstract class CheckDatabase : RoomDatabase() {
 
     abstract val checkDao: CheckDao
+    abstract val plannedCheckDao: PlannedCheckDao
 
     companion object {
         @Volatile
@@ -23,7 +25,8 @@ abstract class CheckDatabase : RoomDatabase() {
                         context.applicationContext,
                         CheckDatabase::class.java,
                         "checks_database"
-                    ).build()
+                    ).fallbackToDestructiveMigration()
+                        .build()
                     INSTANCE = instance
                 }
                 return instance
