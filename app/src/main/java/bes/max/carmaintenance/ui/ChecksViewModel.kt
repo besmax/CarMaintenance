@@ -10,10 +10,12 @@ import bes.max.carmaintenance.network.GoogleSpreadSheetsApi.googleSpreadSheetsAp
 import bes.max.carmaintenance.network.GoogleSpreadSheetsApiStatus
 import kotlinx.coroutines.launch
 
-class ChecksViewModel(val dao: CheckDao) : ViewModel() {
+class ChecksViewModel(private val dao: CheckDao) : ViewModel() {
 
     val checks = MutableLiveData<List<Check>>()
     val status = MutableLiveData<GoogleSpreadSheetsApiStatus>()
+    var check: Check? = null
+    var date: String =""
 
 
     init {
@@ -40,6 +42,11 @@ class ChecksViewModel(val dao: CheckDao) : ViewModel() {
                 e.printStackTrace()
             }
         }
+    }
+
+    fun sortByDate() {
+        val sortedList = checks.value?.sortedBy { it.date }
+        checks.value = sortedList ?: checks.value
     }
 
 }

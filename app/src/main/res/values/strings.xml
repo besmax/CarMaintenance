@@ -1,7 +1,18 @@
 <resources>
     <string name="app_name">CarMaintenance</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="long_string_example">Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...</string>
+    <string name="long_string_example">Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...</string>
     <string name="fab_refresh">Refresh list of checks</string>
-    >
+    <string name="fragment_checks_button_plan">Запланировать ТО</string>
+    <string name="fragment_checks_button_plan_same">Запланировать похожее ТО</string>
+    <string name="fragment_checks_checkbox_sort">По дате</string>
+
+    <string name="fragment_check_detail_date">Дата:\u0020</string>
+    <string name="fragment_check_detail_mileage">Пробег:\u0020</string>
+    <string name="fragment_check_detail_company">Наименование организации:\u0020</string>
+    <string name="fragment_check_detail_name">Выполнены работы:\n</string>
+    <string name="fragment_check_detail_price">Стоимость ТО:\u0020</string>
+
+    <string name="fragment_new_check_work">Планируемые работы</string>
+
 </resources>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/checksFragment">
+
+    <fragment
+        android:id="@+id/checksFragment"
+        android:name="bes.max.carmaintenance.ui.controllers.ChecksFragment"
+        android:label="fragment_checks"
+        tools:layout="@layout/fragment_checks">
+        <action
+            android:id="@+id/action_checksFragment_to_checkDetailFragment"
+            app:destination="@id/checkDetailFragment" />
+        <action
+            android:id="@+id/action_checksFragment_to_newCheckFragment"
+            app:destination="@id/newCheckFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/checkDetailFragment"
+        android:name="bes.max.carmaintenance.ui.controllers.CheckDetailFragment"
+        android:label="CheckDetailFragment"
+        tools:layout="@layout/fragment_check_detail">
+        <argument
+            android:name="checkPosition"
+            android:defaultValue="0"
+            app:argType="integer" />
+    </fragment>
+    <fragment
+        android:id="@+id/newCheckFragment"
+        android:name="bes.max.carmaintenance.ui.controllers.NewCheckFragment"
+        android:label="fragment_new_check"
+        tools:layout="@layout/fragment_new_check" />
+</navigation>

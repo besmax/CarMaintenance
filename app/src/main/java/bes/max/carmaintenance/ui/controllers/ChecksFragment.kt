@@ -1,15 +1,18 @@
-package bes.max.carmaintenance.ui
+package bes.max.carmaintenance.ui.controllers
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import bes.max.carmaintenance.BaseApplication
 import bes.max.carmaintenance.databinding.FragmentChecksBinding
+import bes.max.carmaintenance.ui.CheckItemAdapter
+import bes.max.carmaintenance.ui.ChecksViewModel
+import bes.max.carmaintenance.ui.ChecksViewModelFactory
 
 class ChecksFragment : Fragment() {
 
@@ -38,22 +41,33 @@ class ChecksFragment : Fragment() {
 
         recyclerView = binding.checksList
 
-        val adapter = CheckItemAdapter()
+        val doOnClickItem = { checkPosition: Int ->
+            val action = ChecksFragmentDirections.actionChecksFragmentToCheckDetailFragment(checkPosition)
+            findNavController().navigate(action)
+        }
+        val adapter = CheckItemAdapter(doOnClickItem)
         recyclerView.adapter = adapter
 
-        viewModel.status.observe(viewLifecycleOwner) { responseStatus ->
-            Toast.makeText(requireContext(), responseStatus.toString(), Toast.LENGTH_LONG)
-        }
         viewModel.checks.observe(viewLifecycleOwner) { checksList ->
             adapter.submitList(checksList)
         }
 
-        binding.fabRefresh.setOnClickListener { viewModel.getDataFromGoogleSheets() }
+        binding.fab.setOnClickListener {
+            viewModel.getDataFromGoogleSheets()
+        }
 
-    }
+        binding.fragmentChecksCheckboxSort.setOnCheckedChangeListener { _, isChecked ->
+            if (isChecked) {
+                viewModel.sortByDate()
+                adapter.notifyDataSetChanged()
+            }
+        }
 
-    override fun onResume() {
-        super.onResume()
+        binding.fragmentChecksButtonPlan.setOnClickListener {
+            findNavController()
+                .navigate(ChecksFragmentDirections.actionChecksFragmentToNewCheckFragment())
+        }
+
     }
 
     override fun onDestroyView() {
