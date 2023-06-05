@@ -14,5 +14,6 @@
     <string name="fragment_check_detail_price">Стоимость ТО:\u0020</string>
 
     <string name="fragment_new_check_work">Планируемые работы</string>
+    <string name="fragment_new_check_choose_date">Выберите дату</string>
 
 </resources>
