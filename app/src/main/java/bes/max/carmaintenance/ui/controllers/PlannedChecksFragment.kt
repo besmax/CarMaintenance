@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.RecyclerView
+import bes.max.carmaintenance.BaseApplication
 import bes.max.carmaintenance.databinding.FragmentPlannedChecksBinding
 import bes.max.carmaintenance.ui.PlannedCheckItemAdapter
 import bes.max.carmaintenance.ui.viewmodels.PlannedChecksViewModel
@@ -21,7 +22,9 @@ class PlannedChecksFragment : Fragment() {
     private val adapter = PlannedCheckItemAdapter()
 
     private val viewModel: PlannedChecksViewModel by viewModels {
-        PlannedChecksViewModelFactory()
+        PlannedChecksViewModelFactory(
+            (activity?.application as BaseApplication).checkDatabase.plannedCheckDao
+        )
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -41,6 +44,11 @@ class PlannedChecksFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         recyclerView = binding.fragmentPlannedChecksRecyclerview
         recyclerView.adapter = adapter
+
+        viewModel.plannedChecks.observe(viewLifecycleOwner) {
+            adapter.submitList(it)
+        }
+
     }
 
     override fun onDestroyView() {

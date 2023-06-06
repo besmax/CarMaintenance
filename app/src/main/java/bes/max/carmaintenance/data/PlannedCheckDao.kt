@@ -7,6 +7,7 @@ import androidx.room.Insert
 import androidx.room.Query
 import androidx.room.Update
 import bes.max.carmaintenance.model.PlannedCheck
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface PlannedCheckDao {
@@ -23,7 +24,7 @@ interface PlannedCheckDao {
     suspend fun delete(check: PlannedCheck)
 
     @Query("SELECT * FROM planned_checks_table ORDER BY planned_check_id DESC")
-    fun getAll(): LiveData<List<PlannedCheck>>
+    fun getAll(): Flow<List<PlannedCheck>>
 
     @Query("SELECT * FROM planned_checks_table WHERE planned_check_id = :checkId")
     fun get(checkId: Long): LiveData<PlannedCheck>
