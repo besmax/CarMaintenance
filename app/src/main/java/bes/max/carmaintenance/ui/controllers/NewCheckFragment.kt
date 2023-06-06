@@ -64,4 +64,9 @@ class NewCheckFragment : Fragment() {
         val newFragment = DatePickerFragment()
         newFragment.show(childFragmentManager, "datePicker")
     }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
 }
