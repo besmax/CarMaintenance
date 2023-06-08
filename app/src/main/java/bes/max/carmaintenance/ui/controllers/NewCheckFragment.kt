@@ -1,9 +1,15 @@
 package bes.max.carmaintenance.ui.controllers
 
+import android.app.Activity
+import android.content.Context
+import android.content.Context.INPUT_METHOD_SERVICE
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
+import android.widget.Toast
+import androidx.core.content.ContextCompat.getSystemService
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
@@ -13,6 +19,7 @@ import bes.max.carmaintenance.ui.viewmodels.ChecksViewModel
 import bes.max.carmaintenance.ui.viewmodels.ChecksViewModelFactory
 import bes.max.carmaintenance.ui.viewmodels.NewCheckViewModel
 import bes.max.carmaintenance.ui.viewmodels.NewCheckViewModelFactory
+
 
 class NewCheckFragment : Fragment() {
 
@@ -45,19 +52,38 @@ class NewCheckFragment : Fragment() {
         binding.fragmentNewCheckChooseDate.setOnClickListener {
             showDatePickerDialog(view)
             binding.fragmentNewCheckChooseDate.setText(viewModel.date)
+            Toast.makeText(
+                requireContext(),
+                "${viewModel.date} was chosen as a date",
+                Toast.LENGTH_LONG
+            )
         }
 
         binding.fragmentNewCheckButton.setOnClickListener {
-            if (!binding.fragmentNewCheckEditText.text.isNullOrEmpty()) {
-                newCheckViewModel.insertPlannedCheck(
-                    binding.fragmentNewCheckEditText.text.toString(),
-                    viewModel.date
-                )
-                binding.fragmentNewCheckEditText.text.clear()
-            }
-
+            addNewPlannedCheck()
+            hideKeyboard()
         }
 
+    }
+
+    private fun addNewPlannedCheck() {
+        if (!binding.fragmentNewCheckEditText.text.isNullOrEmpty() && viewModel.date.isNotEmpty()) {
+            newCheckViewModel.insertPlannedCheck(
+                binding.fragmentNewCheckEditText.text.toString(),
+                viewModel.date
+            )
+            binding.fragmentNewCheckEditText.text.clear()
+        } else {
+            Toast.makeText(requireContext(), "Something went wrong", Toast.LENGTH_LONG)
+        }
+    }
+
+    private fun hideKeyboard() {
+        view.let {
+            val inputMethodManager =
+                context?.getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
+            inputMethodManager.hideSoftInputFromWindow(it?.windowToken, 0)
+        }
     }
 
     private fun showDatePickerDialog(v: View) {
