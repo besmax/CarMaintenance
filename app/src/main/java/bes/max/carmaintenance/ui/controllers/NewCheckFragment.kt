@@ -44,14 +44,18 @@ class NewCheckFragment : Fragment() {
 
         binding.fragmentNewCheckChooseDate.setOnClickListener {
             showDatePickerDialog(view)
-            binding.fragmentNewCheckChooseDate.setText(viewModel.date)
+            binding.fragmentNewCheckChooseDate.setText(viewModel.date?.value)
+        }
+
+        viewModel.date.observe(viewLifecycleOwner) {
+            binding.fragmentNewCheckChooseDate.setText(viewModel.date?.value)
         }
 
         binding.fragmentNewCheckButton.setOnClickListener {
-            if (!binding.fragmentNewCheckEditText.text.isNullOrEmpty()) {
+            if (!binding.fragmentNewCheckEditText.text.isNullOrEmpty() && viewModel.date?.value != null) {
                 newCheckViewModel.insertPlannedCheck(
                     binding.fragmentNewCheckEditText.text.toString(),
-                    viewModel.date
+                    viewModel.date.value!!
                 )
                 binding.fragmentNewCheckEditText.text.clear()
             }

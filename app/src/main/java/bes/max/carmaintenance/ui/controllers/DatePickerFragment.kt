@@ -29,6 +29,6 @@ class DatePickerFragment : DialogFragment(), DatePickerDialog.OnDateSetListener 
     }
 
     override fun onDateSet(view: DatePicker?, year: Int, month: Int, dayOfMonth: Int) {
-        viewModel.date = "$dayOfMonth.${month+1}.$year"
+        viewModel.date.value = "$dayOfMonth.${month+1}.$year"
     }
 }
