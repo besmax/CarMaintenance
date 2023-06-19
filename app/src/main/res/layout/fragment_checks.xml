@@ -31,7 +31,8 @@
             app:layout_constraintBottom_toTopOf="@id/fragment_checks_barrier"
             app:layout_constraintEnd_toEndOf="@id/fragment_checks_guideline_end"
             app:layout_constraintStart_toStartOf="@id/fragment_checks_guideline_start"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0"/>
 
         <com.google.android.material.checkbox.MaterialCheckBox
             android:id="@+id/fragment_checks_checkbox_sort"
@@ -49,18 +50,19 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            app:barrierDirection="top"
-            app:constraint_referenced_ids="checks_list" />
+            app:barrierDirection="bottom"
+            app:constraint_referenced_ids="fragment_checks_button_plan, fragment_checks_checkbox_sort" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/checks_list"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@id/fragment_checks_guideline_end"
             app:layout_constraintStart_toStartOf="@id/fragment_checks_guideline_start"
-            app:layout_constraintTop_toBottomOf="@id/fragment_checks_barrier" />
+            app:layout_constraintTop_toBottomOf="@id/fragment_checks_barrier"
+            app:layout_constraintVertical_bias="0.0" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fab"
@@ -69,6 +71,7 @@
             android:layout_gravity="end|bottom"
             android:layout_margin="24dp"
             android:src="@drawable/ic_refresh"
+            android:backgroundTint="@color/fab_background"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@id/fragment_checks_guideline_end" />
 
