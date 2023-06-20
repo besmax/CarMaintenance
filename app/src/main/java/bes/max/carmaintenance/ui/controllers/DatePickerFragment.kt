@@ -2,11 +2,13 @@ package bes.max.carmaintenance.ui.controllers
 
 import android.app.DatePickerDialog
 import android.app.Dialog
+import android.content.DialogInterface
 import android.os.Bundle
 import android.widget.DatePicker
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.activityViewModels
 import bes.max.carmaintenance.BaseApplication
+import bes.max.carmaintenance.R
 import bes.max.carmaintenance.ui.viewmodels.ChecksViewModel
 import bes.max.carmaintenance.ui.viewmodels.ChecksViewModelFactory
 import java.util.Calendar
@@ -29,6 +31,11 @@ class DatePickerFragment : DialogFragment(), DatePickerDialog.OnDateSetListener 
     }
 
     override fun onDateSet(view: DatePicker?, year: Int, month: Int, dayOfMonth: Int) {
-        viewModel.date = "$dayOfMonth.${month+1}.$year"
+        viewModel.date.value = "$dayOfMonth.${month+1}.$year"
+    }
+
+    override fun onCancel(dialog: DialogInterface) {
+        super.onCancel(dialog)
+        viewModel.date.value = getString(R.string.fragment_new_check_choose_date)
     }
 }

@@ -1,25 +1,27 @@
 package bes.max.carmaintenance.ui.controllers
 
-import android.app.Activity
-import android.content.Context
-import android.content.Context.INPUT_METHOD_SERVICE
+import android.content.Intent
+import android.icu.util.Calendar
 import android.os.Bundle
+import android.provider.CalendarContract
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
-import androidx.core.content.ContextCompat.getSystemService
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import bes.max.carmaintenance.BaseApplication
+import bes.max.carmaintenance.R
 import bes.max.carmaintenance.databinding.FragmentNewCheckBinding
 import bes.max.carmaintenance.ui.viewmodels.ChecksViewModel
 import bes.max.carmaintenance.ui.viewmodels.ChecksViewModelFactory
 import bes.max.carmaintenance.ui.viewmodels.NewCheckViewModel
 import bes.max.carmaintenance.ui.viewmodels.NewCheckViewModelFactory
-
+import java.time.LocalDateTime
+import java.time.ZoneId
+import java.time.ZonedDateTime
+import java.time.format.DateTimeFormatter
 
 class NewCheckFragment : Fragment() {
 
@@ -49,47 +51,74 @@ class NewCheckFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        binding.fragmentNewCheckChooseDate.setText(R.string.fragment_new_check_choose_date)
+
         binding.fragmentNewCheckChooseDate.setOnClickListener {
             showDatePickerDialog(view)
-            binding.fragmentNewCheckChooseDate.setText(viewModel.date)
-            Toast.makeText(
-                requireContext(),
-                "${viewModel.date} was chosen as a date",
-                Toast.LENGTH_LONG
-            )
+            binding.fragmentNewCheckChooseDate.setText(viewModel.date?.value)
+        }
+
+        viewModel.date.observe(viewLifecycleOwner) {
+            if (!it.isNullOrEmpty()) {
+                binding.fragmentNewCheckChooseDate.setText(viewModel.date?.value)
+            }
         }
 
         binding.fragmentNewCheckButton.setOnClickListener {
-            addNewPlannedCheck()
-            hideKeyboard()
+            val plannedCheckIsInserted = insertPlannedCheck()
+            if (plannedCheckIsInserted && binding.fragmentNewCheckCheck.isChecked) {
+                addToCalendar()
+            }
+            if (plannedCheckIsInserted) {
+                binding.fragmentNewCheckEditText.text.clear()
+                viewModel.date?.value = getString(R.string.fragment_new_check_choose_date)
+                binding.fragmentNewCheckCheck.isChecked = false
+            }
         }
 
-    }
-
-    private fun addNewPlannedCheck() {
-        if (!binding.fragmentNewCheckEditText.text.isNullOrEmpty() && viewModel.date.isNotEmpty()) {
-            newCheckViewModel.insertPlannedCheck(
-                binding.fragmentNewCheckEditText.text.toString(),
-                viewModel.date
-            )
-            binding.fragmentNewCheckEditText.text.clear()
-        } else {
-            Toast.makeText(requireContext(), "Something went wrong", Toast.LENGTH_LONG)
-        }
-    }
-
-    private fun hideKeyboard() {
-        view.let {
-            val inputMethodManager =
-                context?.getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
-            inputMethodManager.hideSoftInputFromWindow(it?.windowToken, 0)
-        }
     }
 
     private fun showDatePickerDialog(v: View) {
         val newFragment = DatePickerFragment()
         newFragment.show(childFragmentManager, "datePicker")
     }
+
+    private fun insertPlannedCheck(): Boolean {
+        if (!binding.fragmentNewCheckEditText.text.isNullOrEmpty() &&
+            viewModel.date?.value != null &&
+            viewModel.date?.value != getString(R.string.fragment_new_check_choose_date)
+        ) {
+            newCheckViewModel.insertPlannedCheck(
+                binding.fragmentNewCheckEditText.text.toString(),
+                viewModel.date.value!!
+            )
+            return true
+        } else {
+            Toast.makeText(requireContext(), R.string.fragment_new_check_error, Toast.LENGTH_LONG)
+                .show()
+            return false
+        }
+    }
+
+    private fun addToCalendar() {
+        if (!binding.fragmentNewCheckEditText.text.isNullOrEmpty() &&
+            viewModel.date?.value != null &&
+            viewModel.date?.value != getString(R.string.fragment_new_check_choose_date)
+        ) {
+            val dateList = viewModel.date?.value!!.split(".")
+            val begin: Long = Calendar.getInstance().run {
+                set(dateList[0].toInt(), dateList[1].toInt(), dateList[2].toInt(), 7, 0)
+                timeInMillis
+            }
+            val intent = Intent(Intent.ACTION_INSERT)
+                .setData(CalendarContract.Events.CONTENT_URI)
+                .putExtra(CalendarContract.EXTRA_EVENT_BEGIN_TIME, begin)
+                .putExtra(CalendarContract.Events.TITLE, "CarMaintenance")
+                .putExtra(CalendarContract.Events.DESCRIPTION, binding.fragmentNewCheckEditText.text.toString())
+            startActivity(intent)
+        }
+    }
+
 
     override fun onDestroyView() {
         super.onDestroyView()

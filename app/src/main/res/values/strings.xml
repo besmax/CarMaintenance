@@ -17,6 +17,7 @@
     <string name="fragment_new_check_choose_date">Выберите дату</string>
     <string name="fragment_new_check_button">Запланировать</string>
     <string name="fragment_new_check_check">в календарь</string>
+    <string name="fragment_new_check_error">Что-то пошло не так, проверьте дату и описание</string>
 
     <string name="fragment_menu_button_checks">Проведённые ТО</string>
     <string name="fragment_menu_button_planned_checks">Запланированные ТО</string>
