@@ -11,6 +11,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.navArgs
 import bes.max.carmaintenance.BaseApplication
 import bes.max.carmaintenance.R
 import bes.max.carmaintenance.databinding.FragmentNewCheckBinding
@@ -50,6 +51,10 @@ class NewCheckFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        val safeArgs: NewCheckFragmentArgs by navArgs()
+        val checkDesriptionArgs = safeArgs.checkDescription
+        binding.fragmentNewCheckEditText.setText(checkDesriptionArgs)
 
         binding.fragmentNewCheckChooseDate.setText(R.string.fragment_new_check_choose_date)
 

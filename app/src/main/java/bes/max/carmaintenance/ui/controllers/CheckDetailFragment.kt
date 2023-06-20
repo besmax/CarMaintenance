@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import bes.max.carmaintenance.BaseApplication
 import bes.max.carmaintenance.databinding.FragmentCheckDetailBinding
@@ -44,6 +45,12 @@ class CheckDetailFragment : Fragment() {
         binding.fragmentCheckDetailCompany.append(viewModel.check?.checkCompany)
         binding.fragmentCheckDetailPrice.append(viewModel.check?.checkPrice)
         binding.fragmentCheckDetailName.append(viewModel.check?.checkName)
+
+        binding.fragmentCheckDetailPlanButton.setOnClickListener {
+            val checkDescription = binding.fragmentCheckDetailName.text.toString()
+            val action = CheckDetailFragmentDirections.actionCheckDetailFragmentToNewCheckFragment(checkDescription)
+            findNavController().navigate(action)
+        }
 
     }
 
