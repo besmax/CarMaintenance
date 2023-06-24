@@ -75,7 +75,7 @@ class NewCheckFragment : Fragment() {
                 addToCalendar()
             }
             if (plannedCheckIsInserted) {
-                binding.fragmentNewCheckEditText.text.clear()
+                binding.fragmentNewCheckEditText.text?.clear()
                 viewModel.date?.value = getString(R.string.fragment_new_check_choose_date)
                 binding.fragmentNewCheckCheck.isChecked = false
             }
@@ -90,8 +90,8 @@ class NewCheckFragment : Fragment() {
 
     private fun insertPlannedCheck(): Boolean {
         if (!binding.fragmentNewCheckEditText.text.isNullOrEmpty() &&
-            viewModel.date?.value != null &&
-            viewModel.date?.value != getString(R.string.fragment_new_check_choose_date)
+            !binding.fragmentNewCheckChooseDate.text.isNullOrEmpty() &&
+            binding.fragmentNewCheckChooseDate.text != getString(R.string.fragment_new_check_choose_date)
         ) {
             newCheckViewModel.insertPlannedCheck(
                 binding.fragmentNewCheckEditText.text.toString(),
@@ -119,7 +119,10 @@ class NewCheckFragment : Fragment() {
                 .setData(CalendarContract.Events.CONTENT_URI)
                 .putExtra(CalendarContract.EXTRA_EVENT_BEGIN_TIME, begin)
                 .putExtra(CalendarContract.Events.TITLE, "CarMaintenance")
-                .putExtra(CalendarContract.Events.DESCRIPTION, binding.fragmentNewCheckEditText.text.toString())
+                .putExtra(
+                    CalendarContract.Events.DESCRIPTION,
+                    binding.fragmentNewCheckEditText.text.toString()
+                )
             startActivity(intent)
         }
     }
