@@ -72,6 +72,7 @@
             android:layout_margin="24dp"
             android:src="@drawable/ic_refresh"
             android:backgroundTint="@color/fab_background"
+            android:contentDescription="@string/fragment_checks_fab_content_description"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@id/fragment_checks_guideline_end" />
 

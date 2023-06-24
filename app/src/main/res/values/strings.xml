@@ -6,6 +6,7 @@
     <string name="fragment_checks_button_plan">Запланировать ТО</string>
     <string name="fragment_checks_button_plan_same">Запланировать похожее ТО</string>
     <string name="fragment_checks_checkbox_sort">По дате</string>
+    <string name="fragment_checks_fab_content_description">Обновить список пройденных ТО</string>
 
     <string name="fragment_check_detail_date">Дата:\u0020</string>
     <string name="fragment_check_detail_mileage">Пробег:\u0020</string>
