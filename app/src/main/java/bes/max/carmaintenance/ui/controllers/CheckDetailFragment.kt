@@ -19,12 +19,11 @@ class CheckDetailFragment : Fragment() {
     private var _binding: FragmentCheckDetailBinding? = null
     private val binding get() = _binding!!
 
-    private val viewModel: ChecksViewModel by activityViewModels {
+    private val sharedViewModel: ChecksViewModel by activityViewModels {
         ChecksViewModelFactory(
             (activity?.application as BaseApplication).checkDatabase.checkDao
         )
     }
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -39,12 +38,12 @@ class CheckDetailFragment : Fragment() {
         val safeArgs: CheckDetailFragmentArgs by navArgs()
         val positionCheck = safeArgs.checkPosition
 
-        viewModel.check = viewModel.checks.value?.get(positionCheck)
-        binding.fragmentCheckDetailDate.append(viewModel.check?.date.toString())
-        binding.fragmentCheckDetailMileage.append(viewModel.check?.checkMileage)
-        binding.fragmentCheckDetailCompany.append(viewModel.check?.checkCompany)
-        binding.fragmentCheckDetailPrice.append(viewModel.check?.checkPrice)
-        binding.fragmentCheckDetailName.append(viewModel.check?.checkName)
+        sharedViewModel.check = sharedViewModel.checks.value?.get(positionCheck)
+        binding.fragmentCheckDetailDate.append(sharedViewModel.check?.date.toString())
+        binding.fragmentCheckDetailMileage.append(sharedViewModel.check?.checkMileage)
+        binding.fragmentCheckDetailCompany.append(sharedViewModel.check?.checkCompany)
+        binding.fragmentCheckDetailPrice.append(sharedViewModel.check?.checkPrice)
+        binding.fragmentCheckDetailName.append(sharedViewModel.check?.checkName)
 
         binding.fragmentCheckDetailPlanButton.setOnClickListener {
             val checkDescription = binding.fragmentCheckDetailName.text.toString()

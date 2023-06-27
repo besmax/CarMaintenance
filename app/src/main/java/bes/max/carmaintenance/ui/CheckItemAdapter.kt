@@ -7,7 +7,9 @@ import androidx.recyclerview.widget.RecyclerView
 import bes.max.carmaintenance.databinding.CheckItemBinding
 import bes.max.carmaintenance.model.Check
 
-class CheckItemAdapter(private val doOnClick: (checkPosition: Int) -> Unit) : ListAdapter<Check, CheckItemAdapter.CheckItemViewHolder>(
+class CheckItemAdapter(
+    private val doOnClick: (checkPosition: Int) -> Unit
+) : ListAdapter<Check, CheckItemAdapter.CheckItemViewHolder>(
     CheckDiffItemCallback()
 ) {
 
@@ -20,11 +22,12 @@ class CheckItemAdapter(private val doOnClick: (checkPosition: Int) -> Unit) : Li
         holder.itemView.setOnClickListener { doOnClick.invoke(position) }
     }
 
-    class CheckItemViewHolder(val binding: CheckItemBinding) : RecyclerView.ViewHolder(binding.root) {
+    class CheckItemViewHolder(val binding: CheckItemBinding) :
+        RecyclerView.ViewHolder(binding.root) {
 
         companion object {
 
-            fun inflateFrom(parent : ViewGroup): CheckItemViewHolder {
+            fun inflateFrom(parent: ViewGroup): CheckItemViewHolder {
                 val layoutInflater = LayoutInflater.from(parent.context)
                 val binding = CheckItemBinding.inflate(layoutInflater, parent, false)
                 return CheckItemViewHolder(binding)

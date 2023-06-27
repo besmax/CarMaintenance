@@ -6,6 +6,7 @@ import androidx.lifecycle.viewModelScope
 import bes.max.carmaintenance.data.CheckDao
 import bes.max.carmaintenance.model.Check
 import bes.max.carmaintenance.model.GoogleApiResponse
+import bes.max.carmaintenance.model.PlannedCheck
 import bes.max.carmaintenance.network.GoogleSpreadSheetsApi.googleSpreadSheetsApiService
 import bes.max.carmaintenance.network.GoogleSpreadSheetsApiStatus
 import kotlinx.coroutines.launch
