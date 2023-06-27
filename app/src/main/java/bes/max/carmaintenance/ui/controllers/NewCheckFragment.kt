@@ -11,6 +11,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.navArgs
 import bes.max.carmaintenance.BaseApplication
 import bes.max.carmaintenance.R
 import bes.max.carmaintenance.databinding.FragmentNewCheckBinding
@@ -51,6 +52,10 @@ class NewCheckFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        val safeArgs: NewCheckFragmentArgs by navArgs()
+        val checkDesriptionArgs = safeArgs.checkDescription
+        binding.fragmentNewCheckEditText.setText(checkDesriptionArgs)
+
         binding.fragmentNewCheckChooseDate.setText(R.string.fragment_new_check_choose_date)
 
         binding.fragmentNewCheckChooseDate.setOnClickListener {
@@ -70,7 +75,7 @@ class NewCheckFragment : Fragment() {
                 addToCalendar()
             }
             if (plannedCheckIsInserted) {
-                binding.fragmentNewCheckEditText.text.clear()
+                binding.fragmentNewCheckEditText.text?.clear()
                 viewModel.date?.value = getString(R.string.fragment_new_check_choose_date)
                 binding.fragmentNewCheckCheck.isChecked = false
             }
@@ -85,8 +90,8 @@ class NewCheckFragment : Fragment() {
 
     private fun insertPlannedCheck(): Boolean {
         if (!binding.fragmentNewCheckEditText.text.isNullOrEmpty() &&
-            viewModel.date?.value != null &&
-            viewModel.date?.value != getString(R.string.fragment_new_check_choose_date)
+            !binding.fragmentNewCheckChooseDate.text.isNullOrEmpty() &&
+            binding.fragmentNewCheckChooseDate.text != getString(R.string.fragment_new_check_choose_date)
         ) {
             newCheckViewModel.insertPlannedCheck(
                 binding.fragmentNewCheckEditText.text.toString(),
@@ -114,7 +119,10 @@ class NewCheckFragment : Fragment() {
                 .setData(CalendarContract.Events.CONTENT_URI)
                 .putExtra(CalendarContract.EXTRA_EVENT_BEGIN_TIME, begin)
                 .putExtra(CalendarContract.Events.TITLE, "CarMaintenance")
-                .putExtra(CalendarContract.Events.DESCRIPTION, binding.fragmentNewCheckEditText.text.toString())
+                .putExtra(
+                    CalendarContract.Events.DESCRIPTION,
+                    binding.fragmentNewCheckEditText.text.toString()
+                )
             startActivity(intent)
         }
     }
