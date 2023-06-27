@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">CarMaintenance</string>
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="long_string_example">Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...</string>
     <string name="fab_refresh">Refresh list of checks</string>
     <string name="fragment_checks_button_plan">Запланировать ТО</string>
@@ -22,5 +21,9 @@
     <string name="fragment_menu_button_checks">Проведённые ТО</string>
     <string name="fragment_menu_button_planned_checks">Запланированные ТО</string>
     <string name="fragment_menu_button_new_planned_check">Запланировать ТО</string>
+    <string name="fragment_menu_switch_night_mode">Тёмная тема</string>
+
+    <string name="settings_preferences">settings_preferences</string>
+    <string name="dark_theme_preference_key">dark_theme_preference_key</string>
 
 </resources>
