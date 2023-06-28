@@ -20,6 +20,10 @@ class PlannedCheckItemAdapter() :
         holder.bind(getItem(position))
     }
 
+    fun getItemByPosition(position: Int): PlannedCheck {
+        return currentList[position]
+    }
+
     class PlannedCheckItemViewHolder(parent: ViewGroup) : RecyclerView.ViewHolder(
         LayoutInflater.from(parent.context).inflate(R.layout.planned_check_item, parent, false)
     ) {

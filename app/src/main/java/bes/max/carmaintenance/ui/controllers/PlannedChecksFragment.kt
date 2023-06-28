@@ -28,11 +28,6 @@ class PlannedChecksFragment : Fragment() {
         )
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -46,18 +41,37 @@ class PlannedChecksFragment : Fragment() {
         recyclerView = binding.fragmentPlannedChecksRecyclerview
         recyclerView.adapter = adapter
 
+        val itemTouchHelper = ItemTouchHelper(getSwipeCallback())
+        itemTouchHelper.attachToRecyclerView(recyclerView)
+
         viewModel.plannedChecks.observe(viewLifecycleOwner) {
             adapter.submitList(it)
         }
-
-
-
 
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    private fun getSwipeCallback(): ItemTouchHelper.SimpleCallback {
+        return object: ItemTouchHelper.SimpleCallback(0,
+            ItemTouchHelper.RIGHT) {
+
+            override fun onMove(
+                recyclerView: RecyclerView,
+                viewHolder: RecyclerView.ViewHolder,
+                target: RecyclerView.ViewHolder
+            ): Boolean {
+                return false
+            }
+
+            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+                viewModel.deletePlannedCheck(adapter.getItemByPosition(viewHolder.absoluteAdapterPosition))
+            }
+
+        }
     }
 
 

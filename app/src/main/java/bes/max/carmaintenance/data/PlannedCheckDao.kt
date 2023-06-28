@@ -28,4 +28,5 @@ interface PlannedCheckDao {
 
     @Query("SELECT * FROM planned_checks_table WHERE planned_check_id = :checkId")
     fun get(checkId: Long): LiveData<PlannedCheck>
+
 }
