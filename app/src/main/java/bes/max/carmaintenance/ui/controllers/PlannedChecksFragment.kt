@@ -100,6 +100,7 @@ class PlannedChecksFragment : Fragment() {
                 val arr = intArrayOf(com.google.android.material.R.attr.colorOnSecondary)
                 val typedArray = currentTheme.obtainStyledAttributes(arr)
                 val colorOnSecondary = typedArray.getColor(0, 0)
+
 //??
                 if (dX < viewHolder.itemView.width / 3)
                     c.drawColor(
