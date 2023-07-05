@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="fragment_check_detail_textview_horizontal_margin">8dp</dimen>
+    <dimen name="fragment_planned_checks_ic_delete_height">24dp</dimen>
+
 </resources>
