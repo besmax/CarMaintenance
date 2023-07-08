@@ -7,6 +7,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Surface
+import androidx.compose.runtime.Composable
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.ItemTouchHelper
@@ -38,7 +41,15 @@ class PlannedChecksFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentPlannedChecksBinding.inflate(inflater, container, false)
+        _binding = FragmentPlannedChecksBinding.inflate(inflater, container, false).apply {
+            fragmentPlannedChecksComposeView.setContent {
+                MaterialTheme {
+                    Surface {
+                        PlannedChecksFragmentContent()
+                    }
+                }
+            }
+        }
         return binding.root
     }
 
@@ -59,6 +70,16 @@ class PlannedChecksFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    @Composable
+    fun PlannedChecksRecyclerView() {
+        
+    }
+
+    @Composable
+    fun PlannedChecksFragmentContent() {
+
     }
 
     private fun getSwipeCallback(): ItemTouchHelper.SimpleCallback {
@@ -95,13 +116,6 @@ class PlannedChecksFragment : Fragment() {
                     dX, viewHolder.itemView.bottom.toFloat()
                 )
 
-                // TODO get color from theme
-                val currentTheme = requireContext().theme
-                val arr = intArrayOf(com.google.android.material.R.attr.colorOnSecondary)
-                val typedArray = currentTheme.obtainStyledAttributes(arr)
-                val colorOnSecondary = typedArray.getColor(0, 0)
-
-//??
                 if (dX < viewHolder.itemView.width / 3)
                     c.drawColor(
                         MaterialColors.getColor(
