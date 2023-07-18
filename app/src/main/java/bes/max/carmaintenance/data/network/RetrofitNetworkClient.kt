@@ -1,9 +1,11 @@
 package bes.max.carmaintenance.data.network
 
+import android.util.Log
 import bes.max.carmaintenance.data.NetworkClient
 import bes.max.carmaintenance.data.dto.GoogleApiResponse
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import java.lang.Exception
 
 class RetrofitNetworkClient : NetworkClient {
 
@@ -18,12 +20,21 @@ class RetrofitNetworkClient : NetworkClient {
         retrofit.create(GoogleSpreadSheetsService::class.java)
     }
 
+
     override suspend fun getData(): GoogleApiResponse {
-        val result = googleSpreadSheetsApiService.getData()
-        return if (result.isSuccessful && result.body() != null) {
-            result.body()!!
-        } else {
-            GoogleApiResponse("", "", emptyList())
+        var result = GoogleApiResponse("", "", emptyList())
+        try {
+            val response = googleSpreadSheetsApiService.getData()
+            if (response.isSuccessful && response.body() != null) {
+                result = response.body()!!
+            }
+        } catch (e: Exception) {
+            Log.e(
+                "RetrofitNetworkClient",
+                "Error during catching data from remote: ${e.toString()}"
+            )
         }
+        return result
+
     }
 }

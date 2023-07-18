@@ -1,4 +1,4 @@
-package bes.max.carmaintenance.ui.controllers
+package bes.max.carmaintenance.ui.check_detail
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,8 +10,8 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import bes.max.carmaintenance.BaseApplication
 import bes.max.carmaintenance.databinding.FragmentCheckDetailBinding
-import bes.max.carmaintenance.ui.viewmodels.ChecksViewModel
-import bes.max.carmaintenance.ui.viewmodels.ChecksViewModelFactory
+import bes.max.carmaintenance.ui.checks.ChecksViewModel
+import bes.max.carmaintenance.ui.checks.ChecksViewModelFactory
 
 
 class CheckDetailFragment : Fragment() {
@@ -21,7 +21,7 @@ class CheckDetailFragment : Fragment() {
 
     private val sharedViewModel: ChecksViewModel by activityViewModels {
         ChecksViewModelFactory(
-            (activity?.application as BaseApplication).checkDatabase.checkDao
+            (activity?.application as BaseApplication).appComponent.getCheckRepository()
         )
     }
 
@@ -47,7 +47,9 @@ class CheckDetailFragment : Fragment() {
 
         binding.fragmentCheckDetailPlanButton.setOnClickListener {
             val checkDescription = binding.fragmentCheckDetailName.text.toString()
-            val action = CheckDetailFragmentDirections.actionCheckDetailFragmentToNewCheckFragment(checkDescription)
+            val action = CheckDetailFragmentDirections.actionCheckDetailFragmentToNewCheckFragment(
+                checkDescription
+            )
             findNavController().navigate(action)
         }
 

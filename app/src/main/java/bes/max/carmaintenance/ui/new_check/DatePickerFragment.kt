@@ -1,4 +1,4 @@
-package bes.max.carmaintenance.ui.controllers
+package bes.max.carmaintenance.ui.new_check
 
 import android.app.DatePickerDialog
 import android.app.Dialog
@@ -9,15 +9,15 @@ import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.activityViewModels
 import bes.max.carmaintenance.BaseApplication
 import bes.max.carmaintenance.R
-import bes.max.carmaintenance.ui.viewmodels.ChecksViewModel
-import bes.max.carmaintenance.ui.viewmodels.ChecksViewModelFactory
+import bes.max.carmaintenance.ui.checks.ChecksViewModel
+import bes.max.carmaintenance.ui.checks.ChecksViewModelFactory
 import java.util.Calendar
 
 class DatePickerFragment : DialogFragment(), DatePickerDialog.OnDateSetListener {
 
     private val viewModel: ChecksViewModel by activityViewModels {
         ChecksViewModelFactory(
-            (activity?.application as BaseApplication).checkDatabase.checkDao
+            (activity?.application as BaseApplication).appComponent.getCheckRepository()
         )
     }
 

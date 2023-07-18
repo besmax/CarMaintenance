@@ -1,4 +1,4 @@
-package bes.max.carmaintenance.ui.controllers
+package bes.max.carmaintenance.ui.menu
 
 import android.content.Context
 import android.content.res.Configuration

@@ -1,4 +1,4 @@
-package bes.max.carmaintenance.ui.controllers
+package bes.max.carmaintenance.ui.new_check
 
 import android.content.Intent
 import android.icu.util.Calendar
@@ -15,14 +15,8 @@ import androidx.navigation.fragment.navArgs
 import bes.max.carmaintenance.BaseApplication
 import bes.max.carmaintenance.R
 import bes.max.carmaintenance.databinding.FragmentNewCheckBinding
-import bes.max.carmaintenance.ui.viewmodels.ChecksViewModel
-import bes.max.carmaintenance.ui.viewmodels.ChecksViewModelFactory
-import bes.max.carmaintenance.ui.viewmodels.NewCheckViewModel
-import bes.max.carmaintenance.ui.viewmodels.NewCheckViewModelFactory
-import java.time.LocalDateTime
-import java.time.ZoneId
-import java.time.ZonedDateTime
-import java.time.format.DateTimeFormatter
+import bes.max.carmaintenance.ui.checks.ChecksViewModel
+import bes.max.carmaintenance.ui.checks.ChecksViewModelFactory
 
 class NewCheckFragment : Fragment() {
 
@@ -31,7 +25,7 @@ class NewCheckFragment : Fragment() {
 
     private val viewModel: ChecksViewModel by activityViewModels {
         ChecksViewModelFactory(
-            (activity?.application as BaseApplication).checkDatabase.checkDao
+            (activity?.application as BaseApplication).appComponent.getCheckRepository()
         )
     }
 

@@ -7,7 +7,7 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:padding="8dp"
-        tools:context=".ui.controllers.CheckDetailFragment">
+        tools:context=".ui.check_detail.CheckDetailFragment">
 
         <Button
             android:id="@+id/fragment_check_detail_plan_button"

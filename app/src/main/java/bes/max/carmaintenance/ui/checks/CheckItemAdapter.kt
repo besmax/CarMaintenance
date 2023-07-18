@@ -1,4 +1,4 @@
-package bes.max.carmaintenance.ui
+package bes.max.carmaintenance.ui.checks
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

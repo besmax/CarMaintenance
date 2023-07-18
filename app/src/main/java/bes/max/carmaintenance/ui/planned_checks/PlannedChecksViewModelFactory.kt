@@ -1,8 +1,8 @@
-package bes.max.carmaintenance.ui.viewmodels
+package bes.max.carmaintenance.ui.planned_checks
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import bes.max.carmaintenance.data.PlannedCheckDao
+import bes.max.carmaintenance.data.db.PlannedCheckDao
 
 class PlannedChecksViewModelFactory(private val plannedCheckDao: PlannedCheckDao) : ViewModelProvider.Factory {
 

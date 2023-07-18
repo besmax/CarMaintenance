@@ -1,4 +1,4 @@
-package bes.max.carmaintenance.ui.controllers
+package bes.max.carmaintenance.ui.planned_checks
 
 import android.graphics.Canvas
 import android.graphics.Color
@@ -14,9 +14,6 @@ import androidx.recyclerview.widget.RecyclerView
 import bes.max.carmaintenance.BaseApplication
 import bes.max.carmaintenance.R
 import bes.max.carmaintenance.databinding.FragmentPlannedChecksBinding
-import bes.max.carmaintenance.ui.PlannedCheckItemAdapter
-import bes.max.carmaintenance.ui.viewmodels.PlannedChecksViewModel
-import bes.max.carmaintenance.ui.viewmodels.PlannedChecksViewModelFactory
 import com.google.android.material.color.MaterialColors
 import kotlin.math.roundToInt
 

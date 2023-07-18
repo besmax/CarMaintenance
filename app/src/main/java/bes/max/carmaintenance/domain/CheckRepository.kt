@@ -1,5 +1,6 @@
-package bes.max.carmaintenance.domain.models
+package bes.max.carmaintenance.domain
 
+import bes.max.carmaintenance.domain.models.Check
 import kotlinx.coroutines.flow.Flow
 
 interface CheckRepository {

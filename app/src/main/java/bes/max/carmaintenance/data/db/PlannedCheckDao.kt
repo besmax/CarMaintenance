@@ -1,6 +1,5 @@
-package bes.max.carmaintenance.data
+package bes.max.carmaintenance.data.db
 
-import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
@@ -27,6 +26,6 @@ interface PlannedCheckDao {
     fun getAll(): Flow<List<PlannedCheck>>
 
     @Query("SELECT * FROM planned_checks_table WHERE planned_check_id = :checkId")
-    fun get(checkId: Long): LiveData<PlannedCheck>
+    fun get(checkId: Long): Flow<PlannedCheck>
 
 }

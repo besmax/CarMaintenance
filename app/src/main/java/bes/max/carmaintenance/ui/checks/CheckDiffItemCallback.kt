@@ -1,4 +1,4 @@
-package bes.max.carmaintenance.ui
+package bes.max.carmaintenance.ui.checks
 
 import androidx.recyclerview.widget.DiffUtil
 import bes.max.carmaintenance.domain.models.Check

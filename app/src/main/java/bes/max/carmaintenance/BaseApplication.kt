@@ -5,7 +5,11 @@ import android.content.Context
 import android.content.res.Configuration
 import android.os.Build
 import androidx.appcompat.app.AppCompatDelegate
-import bes.max.carmaintenance.data.CheckDatabase
+import bes.max.carmaintenance.data.db.CheckDatabase
+import bes.max.carmaintenance.di.AppComponent
+import bes.max.carmaintenance.di.DaggerAppComponent
+import bes.max.carmaintenance.di.DatabaseModule
+import bes.max.carmaintenance.di.NetworkModule
 
 class BaseApplication : Application() {
 
@@ -13,8 +17,15 @@ class BaseApplication : Application() {
         CheckDatabase.getInstance(this)
     }
 
+    lateinit var appComponent: AppComponent
+
     override fun onCreate() {
         super.onCreate()
+        appComponent = DaggerAppComponent
+            .builder()
+            .databaseModule(DatabaseModule(this))
+            .build()
+
         val darkThemePreference =
             getSharedPreferences(getString(R.string.settings_preferences), Context.MODE_PRIVATE)
         val darkTheme = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {

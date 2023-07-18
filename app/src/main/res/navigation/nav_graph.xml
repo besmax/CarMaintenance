@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/checksFragment"
-        android:name="bes.max.carmaintenance.ui.controllers.ChecksFragment"
+        android:name="bes.max.carmaintenance.ui.checks.ChecksFragment"
         android:label="fragment_checks"
         tools:layout="@layout/fragment_checks">
         <action
@@ -20,7 +20,7 @@
 
     <fragment
         android:id="@+id/checkDetailFragment"
-        android:name="bes.max.carmaintenance.ui.controllers.CheckDetailFragment"
+        android:name="bes.max.carmaintenance.ui.check_detail.CheckDetailFragment"
         android:label="CheckDetailFragment"
         tools:layout="@layout/fragment_check_detail">
         <argument
@@ -33,7 +33,7 @@
     </fragment>
     <fragment
         android:id="@+id/newCheckFragment"
-        android:name="bes.max.carmaintenance.ui.controllers.NewCheckFragment"
+        android:name="bes.max.carmaintenance.ui.new_check.NewCheckFragment"
         android:label="fragment_new_check"
         tools:layout="@layout/fragment_new_check" >
         <argument
@@ -43,7 +43,7 @@
     </fragment>
     <fragment
         android:id="@+id/menuFragment"
-        android:name="bes.max.carmaintenance.ui.controllers.MenuFragment"
+        android:name="bes.max.carmaintenance.ui.menu.MenuFragment"
         android:label="fragment_menu"
         tools:layout="@layout/fragment_menu" >
         <action
@@ -58,7 +58,7 @@
     </fragment>
     <fragment
         android:id="@+id/plannedChecksFragment2"
-        android:name="bes.max.carmaintenance.ui.controllers.PlannedChecksFragment"
+        android:name="bes.max.carmaintenance.ui.planned_checks.PlannedChecksFragment"
         android:label="fragment_planned_checks"
         tools:layout="@layout/fragment_planned_checks" />
 </navigation>

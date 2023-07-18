@@ -1,10 +1,10 @@
-package bes.max.carmaintenance.ui.viewmodels
+package bes.max.carmaintenance.ui.planned_checks
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
-import bes.max.carmaintenance.data.PlannedCheckDao
+import bes.max.carmaintenance.data.db.PlannedCheckDao
 import bes.max.carmaintenance.domain.models.PlannedCheck
 import kotlinx.coroutines.launch
 

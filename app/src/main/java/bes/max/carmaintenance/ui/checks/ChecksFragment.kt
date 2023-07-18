@@ -1,4 +1,4 @@
-package bes.max.carmaintenance.ui.controllers
+package bes.max.carmaintenance.ui.checks
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,9 +10,6 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import bes.max.carmaintenance.BaseApplication
 import bes.max.carmaintenance.databinding.FragmentChecksBinding
-import bes.max.carmaintenance.ui.CheckItemAdapter
-import bes.max.carmaintenance.ui.viewmodels.ChecksViewModel
-import bes.max.carmaintenance.ui.viewmodels.ChecksViewModelFactory
 
 class ChecksFragment : Fragment() {
 
@@ -21,9 +18,11 @@ class ChecksFragment : Fragment() {
 
     private lateinit var recyclerView: RecyclerView
 
+    private val appComponent = (activity?.application as BaseApplication).appComponent
+
     private val viewModel: ChecksViewModel by activityViewModels {
         ChecksViewModelFactory(
-            (activity?.application as BaseApplication).checkDatabase.checkDao
+            appComponent.getCheckRepository()
         )
     }
 
@@ -42,7 +41,8 @@ class ChecksFragment : Fragment() {
         recyclerView = binding.checksList
 
         val doOnClickItem = { checkPosition: Int ->
-            val action = ChecksFragmentDirections.actionChecksFragmentToCheckDetailFragment(checkPosition)
+            val action =
+                ChecksFragmentDirections.actionChecksFragmentToCheckDetailFragment(checkPosition)
             findNavController().navigate(action)
         }
         val adapter = CheckItemAdapter(doOnClickItem)

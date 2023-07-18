@@ -1,10 +1,10 @@
 package bes.max.carmaintenance.data.repositories
 
-import bes.max.carmaintenance.data.CheckDao
+import bes.max.carmaintenance.data.db.CheckDao
 import bes.max.carmaintenance.data.NetworkClient
 import bes.max.carmaintenance.data.mappers.GoogleApiResponseMapper
 import bes.max.carmaintenance.domain.models.Check
-import bes.max.carmaintenance.domain.models.CheckRepository
+import bes.max.carmaintenance.domain.CheckRepository
 import kotlinx.coroutines.flow.Flow
 
 class ChecksRepositoryImpl(
