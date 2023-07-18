@@ -1,7 +1,7 @@
 package bes.max.carmaintenance.ui
 
 import androidx.recyclerview.widget.DiffUtil
-import bes.max.carmaintenance.model.PlannedCheck
+import bes.max.carmaintenance.domain.models.PlannedCheck
 
 class PlannedCheckDiffItemCallback : DiffUtil.ItemCallback<PlannedCheck>() {
     override fun areItemsTheSame(oldItem: PlannedCheck, newItem: PlannedCheck): Boolean

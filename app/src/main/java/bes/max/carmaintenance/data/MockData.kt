@@ -1,7 +1,5 @@
 package bes.max.carmaintenance.data
 
-import bes.max.carmaintenance.model.Check
-
 object MockData {
 
 //    val checks = listOf(

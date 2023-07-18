@@ -4,8 +4,8 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import bes.max.carmaintenance.model.Check
-import bes.max.carmaintenance.model.PlannedCheck
+import bes.max.carmaintenance.domain.models.Check
+import bes.max.carmaintenance.domain.models.PlannedCheck
 
 @Database(entities = [Check::class, PlannedCheck::class], version = 3, exportSchema = false)
 abstract class CheckDatabase : RoomDatabase() {

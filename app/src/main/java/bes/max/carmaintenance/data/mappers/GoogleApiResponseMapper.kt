@@ -1,15 +1,14 @@
-package bes.max.carmaintenance.model
+package bes.max.carmaintenance.data.mappers
 
-data class GoogleApiResponse(
-    val range: String,
-    val majorDimension: String,
-    val values: List<List<String>>
-) {
+import bes.max.carmaintenance.data.dto.GoogleApiResponse
+import bes.max.carmaintenance.domain.models.Check
 
-    fun convertDataToCheckFormat(): List<Check> {
+class GoogleApiResponseMapper {
+
+    fun toListOfCheck(response: GoogleApiResponse): List<Check> {
         val checks: MutableList<Check> = mutableListOf()
-        if (values != null) {
-            values.forEach { listOfString ->
+        if (response.values != null) {
+            response.values.forEach { listOfString ->
                 checks.add(
                     Check(
                         checkId = listOfString[0],
@@ -24,4 +23,5 @@ data class GoogleApiResponse(
         }
         return checks
     }
+
 }

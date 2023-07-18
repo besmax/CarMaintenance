@@ -4,11 +4,10 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import bes.max.carmaintenance.data.CheckDao
-import bes.max.carmaintenance.model.Check
-import bes.max.carmaintenance.model.GoogleApiResponse
-import bes.max.carmaintenance.model.PlannedCheck
-import bes.max.carmaintenance.network.GoogleSpreadSheetsApi.googleSpreadSheetsApiService
-import bes.max.carmaintenance.network.GoogleSpreadSheetsApiStatus
+import bes.max.carmaintenance.domain.models.Check
+import bes.max.carmaintenance.data.dto.GoogleApiResponse
+import bes.max.carmaintenance.data.network.GoogleSpreadSheetsApi.googleSpreadSheetsApiService
+import bes.max.carmaintenance.data.network.GoogleSpreadSheetsApiStatus
 import kotlinx.coroutines.launch
 
 class ChecksViewModel(private val dao: CheckDao) : ViewModel() {

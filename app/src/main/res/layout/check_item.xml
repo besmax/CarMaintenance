@@ -7,7 +7,7 @@
 
         <variable
             name="check"
-            type="bes.max.carmaintenance.model.Check" />
+            type="bes.max.carmaintenance.domain.models.Check" />
     </data>
 
     <androidx.cardview.widget.CardView

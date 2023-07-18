@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import bes.max.carmaintenance.databinding.CheckItemBinding
-import bes.max.carmaintenance.model.Check
+import bes.max.carmaintenance.domain.models.Check
 
 class CheckItemAdapter(
     private val doOnClick: (checkPosition: Int) -> Unit

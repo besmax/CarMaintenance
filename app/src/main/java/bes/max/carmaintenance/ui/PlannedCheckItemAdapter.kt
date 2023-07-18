@@ -6,7 +6,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import bes.max.carmaintenance.R
-import bes.max.carmaintenance.model.PlannedCheck
+import bes.max.carmaintenance.domain.models.PlannedCheck
 
 class PlannedCheckItemAdapter() :
     ListAdapter<PlannedCheck, PlannedCheckItemAdapter.PlannedCheckItemViewHolder>(

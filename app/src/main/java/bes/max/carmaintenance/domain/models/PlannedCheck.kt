@@ -1,4 +1,4 @@
-package bes.max.carmaintenance.model
+package bes.max.carmaintenance.domain.models
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
