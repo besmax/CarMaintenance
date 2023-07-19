@@ -18,11 +18,9 @@ class ChecksFragment : Fragment() {
 
     private lateinit var recyclerView: RecyclerView
 
-    private val appComponent = (activity?.application as BaseApplication).appComponent
-
     private val viewModel: ChecksViewModel by activityViewModels {
         ChecksViewModelFactory(
-            appComponent.getCheckRepository()
+            (activity?.application as BaseApplication).appComponent.getCheckRepository()
         )
     }
 

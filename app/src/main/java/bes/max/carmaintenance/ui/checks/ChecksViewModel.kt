@@ -1,5 +1,6 @@
 package bes.max.carmaintenance.ui.checks
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -9,8 +10,8 @@ import kotlinx.coroutines.launch
 
 class ChecksViewModel(private val checkRepository: CheckRepository) : ViewModel() {
 
-    val checks = MutableLiveData<List<Check>>()
-    //val status = MutableLiveData<GoogleSpreadSheetsApiStatus>()
+    private val _checks = MutableLiveData<List<Check>>()
+    val checks: LiveData<List<Check>> = _checks
     var check: Check? = null
     var date = MutableLiveData<String>("")
 
@@ -21,13 +22,13 @@ class ChecksViewModel(private val checkRepository: CheckRepository) : ViewModel(
 
     fun getDataFromGoogleSheets() {
         viewModelScope.launch {
-            checks.value = checkRepository.getDataFromRemote()
+            _checks.value = checkRepository.getDataFromRemote()
         }
     }
 
     fun sortByDate() {
         val sortedList = checks.value?.sortedBy { it.date }
-        checks.value = sortedList ?: checks.value
+        _checks.value = sortedList ?: checks.value
     }
 
 }
