@@ -10,7 +10,11 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import bes.max.carmaintenance.BaseApplication
 import bes.max.carmaintenance.databinding.FragmentChecksBinding
+import bes.max.carmaintenance.domain.CheckRepository
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
+@AndroidEntryPoint
 class ChecksFragment : Fragment() {
 
     private var _binding: FragmentChecksBinding? = null
@@ -18,10 +22,11 @@ class ChecksFragment : Fragment() {
 
     private lateinit var recyclerView: RecyclerView
 
+    @Inject
+    lateinit var checkRepository: CheckRepository
+
     private val viewModel: ChecksViewModel by activityViewModels {
-        ChecksViewModelFactory(
-            (activity?.application as BaseApplication).appComponent.getCheckRepository()
-        )
+        ChecksViewModelFactory(checkRepository = checkRepository)
     }
 
     override fun onCreateView(

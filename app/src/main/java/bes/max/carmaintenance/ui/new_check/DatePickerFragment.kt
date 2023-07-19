@@ -9,16 +9,21 @@ import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.activityViewModels
 import bes.max.carmaintenance.BaseApplication
 import bes.max.carmaintenance.R
+import bes.max.carmaintenance.domain.CheckRepository
 import bes.max.carmaintenance.ui.checks.ChecksViewModel
 import bes.max.carmaintenance.ui.checks.ChecksViewModelFactory
+import dagger.hilt.android.AndroidEntryPoint
 import java.util.Calendar
+import javax.inject.Inject
 
+@AndroidEntryPoint
 class DatePickerFragment : DialogFragment(), DatePickerDialog.OnDateSetListener {
 
-    private val viewModel: ChecksViewModel by activityViewModels {
-        ChecksViewModelFactory(
-            (activity?.application as BaseApplication).appComponent.getCheckRepository()
-        )
+    @Inject
+    lateinit var checkRepository: CheckRepository
+
+    private val sharedViewModel: ChecksViewModel by activityViewModels {
+        ChecksViewModelFactory(checkRepository = checkRepository)
     }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
@@ -31,11 +36,11 @@ class DatePickerFragment : DialogFragment(), DatePickerDialog.OnDateSetListener 
     }
 
     override fun onDateSet(view: DatePicker?, year: Int, month: Int, dayOfMonth: Int) {
-        viewModel.date.value = "$dayOfMonth.${month+1}.$year"
+        sharedViewModel.date.value = "$dayOfMonth.${month+1}.$year"
     }
 
     override fun onCancel(dialog: DialogInterface) {
         super.onCancel(dialog)
-        viewModel.date.value = getString(R.string.fragment_new_check_choose_date)
+        sharedViewModel.date.value = getString(R.string.fragment_new_check_choose_date)
     }
 }

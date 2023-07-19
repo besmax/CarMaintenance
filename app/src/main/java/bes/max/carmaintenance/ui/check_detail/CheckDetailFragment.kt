@@ -10,19 +10,23 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import bes.max.carmaintenance.BaseApplication
 import bes.max.carmaintenance.databinding.FragmentCheckDetailBinding
+import bes.max.carmaintenance.domain.CheckRepository
 import bes.max.carmaintenance.ui.checks.ChecksViewModel
 import bes.max.carmaintenance.ui.checks.ChecksViewModelFactory
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
-
+@AndroidEntryPoint
 class CheckDetailFragment : Fragment() {
 
     private var _binding: FragmentCheckDetailBinding? = null
     private val binding get() = _binding!!
 
+    @Inject
+    lateinit var checkRepository: CheckRepository
+
     private val sharedViewModel: ChecksViewModel by activityViewModels {
-        ChecksViewModelFactory(
-            (activity?.application as BaseApplication).appComponent.getCheckRepository()
-        )
+        ChecksViewModelFactory(checkRepository = checkRepository)
     }
 
     override fun onCreateView(

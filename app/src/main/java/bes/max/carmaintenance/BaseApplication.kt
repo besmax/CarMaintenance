@@ -6,25 +6,18 @@ import android.content.res.Configuration
 import android.os.Build
 import androidx.appcompat.app.AppCompatDelegate
 import bes.max.carmaintenance.data.db.CheckDatabase
-import bes.max.carmaintenance.di.AppComponent
-import bes.max.carmaintenance.di.DaggerAppComponent
-import bes.max.carmaintenance.di.DatabaseModule
-import bes.max.carmaintenance.di.NetworkModule
+import dagger.hilt.android.HiltAndroidApp
+import javax.inject.Inject
 
+@HiltAndroidApp
 class BaseApplication : Application() {
 
     val checkDatabase: CheckDatabase by lazy {
         CheckDatabase.getInstance(this)
     }
 
-    lateinit var appComponent: AppComponent
-
     override fun onCreate() {
         super.onCreate()
-        appComponent = DaggerAppComponent
-            .builder()
-            .databaseModule(DatabaseModule(this))
-            .build()
 
         val darkThemePreference =
             getSharedPreferences(getString(R.string.settings_preferences), Context.MODE_PRIVATE)
