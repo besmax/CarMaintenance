@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/menuFragment">
+
+    <fragment
+        android:id="@+id/checksFragment"
+        android:name="bes.max.carmaintenance.ui.checks.ChecksFragment"
+        android:label="fragment_checks"
+        tools:layout="@layout/fragment_checks">
+        <action
+            android:id="@+id/action_checksFragment_to_checkDetailFragment"
+            app:destination="@id/checkDetailFragment" />
+        <action
+            android:id="@+id/action_checksFragment_to_newCheckFragment"
+            app:destination="@id/newCheckFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/checkDetailFragment"
+        android:name="bes.max.carmaintenance.ui.check_detail.CheckDetailFragment"
+        android:label="CheckDetailFragment"
+        tools:layout="@layout/fragment_check_detail">
+        <argument
+            android:name="checkPosition"
+            android:defaultValue="0"
+            app:argType="integer" />
+        <action
+            android:id="@+id/action_checkDetailFragment_to_newCheckFragment"
+            app:destination="@id/newCheckFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/newCheckFragment"
+        android:name="bes.max.carmaintenance.ui.new_check.NewCheckFragment"
+        android:label="fragment_new_check"
+        tools:layout="@layout/fragment_new_check" >
+        <argument
+            android:name="checkDescription"
+            android:defaultValue=""
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/menuFragment"
+        android:name="bes.max.carmaintenance.ui.menu.MenuFragment"
+        android:label="fragment_menu"
+        tools:layout="@layout/fragment_menu" >
+        <action
+            android:id="@+id/action_menuFragment_to_checksFragment"
+            app:destination="@id/checksFragment" />
+        <action
+            android:id="@+id/action_menuFragment_to_newCheckFragment"
+            app:destination="@id/newCheckFragment" />
+        <action
+            android:id="@+id/action_menuFragment_to_plannedChecksFragment2"
+            app:destination="@id/plannedChecksFragment2" />
+    </fragment>
+    <fragment
+        android:id="@+id/plannedChecksFragment2"
+        android:name="bes.max.carmaintenance.ui.planned_checks.PlannedChecksFragment"
+        android:label="fragment_planned_checks"
+        tools:layout="@layout/fragment_planned_checks" />
+</navigation>

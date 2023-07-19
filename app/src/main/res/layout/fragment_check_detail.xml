@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="8dp"
+        tools:context=".ui.check_detail.CheckDetailFragment">
+
+        <Button
+            android:id="@+id/fragment_check_detail_plan_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="16dp"
+            android:text="@string/fragment_checks_button_plan_same"
+            android:textAllCaps="false" />
+
+        <TextView
+            android:id="@+id/fragment_check_detail_date"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="36dp"
+            android:text="@string/fragment_check_detail_date" />
+
+        <TextView
+            android:id="@+id/fragment_check_detail_mileage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="@dimen/fragment_check_detail_textview_horizontal_margin"
+            android:text="@string/fragment_check_detail_mileage" />
+
+        <TextView
+            android:id="@+id/fragment_check_detail_company"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/fragment_check_detail_company" />
+
+        <TextView
+            android:id="@+id/fragment_check_detail_price"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="@dimen/fragment_check_detail_textview_horizontal_margin"
+            android:text="@string/fragment_check_detail_price" />
+
+        <TextView
+            android:id="@+id/fragment_check_detail_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/fragment_check_detail_name" />
+
+    </LinearLayout>
+</layout>

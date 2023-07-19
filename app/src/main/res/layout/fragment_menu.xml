@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.menu.MenuFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="16dp"
+        android:orientation="vertical">
+
+        <com.google.android.material.switchmaterial.SwitchMaterial
+            android:id="@+id/fragment_menu_switch_theme"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/fragment_menu_switch_night_mode"
+            android:textAllCaps="false"/>
+
+        <Button
+            style="@style/fragment_menu_buttons"
+            android:id="@+id/fragment_menu_button_checks"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:text="@string/fragment_menu_button_checks"/>
+
+        <Button
+            style="@style/fragment_menu_buttons"
+            android:id="@+id/fragment_menu_button_planned_checks"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:text="@string/fragment_menu_button_planned_checks"/>
+
+        <Button
+            style="@style/fragment_menu_buttons"
+            android:id="@+id/fragment_menu_button_new_planned_check"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:text="@string/fragment_menu_button_new_planned_check"/>
+
+    </LinearLayout>
+</layout>
