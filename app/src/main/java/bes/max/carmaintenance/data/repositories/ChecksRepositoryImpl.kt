@@ -6,7 +6,9 @@ import bes.max.carmaintenance.data.mappers.GoogleApiResponseMapper
 import bes.max.carmaintenance.domain.CheckRepository
 import bes.max.carmaintenance.domain.models.Check
 import kotlinx.coroutines.flow.Flow
+import javax.inject.Singleton
 
+@Singleton
 class ChecksRepositoryImpl(
     private val networkClient: NetworkClient,
     private val checkDao: CheckDao,
