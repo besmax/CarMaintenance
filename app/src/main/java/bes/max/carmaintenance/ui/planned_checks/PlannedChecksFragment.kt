@@ -1,5 +1,6 @@
 package bes.max.carmaintenance.ui.planned_checks
 
+import android.content.Context
 import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Rect
@@ -14,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView
 import bes.max.carmaintenance.BaseApplication
 import bes.max.carmaintenance.R
 import bes.max.carmaintenance.databinding.FragmentPlannedChecksBinding
+import bes.max.carmaintenance.di.ViewModelFactory
 import com.google.android.material.color.MaterialColors
 import kotlin.math.roundToInt
 
@@ -25,10 +27,14 @@ class PlannedChecksFragment : Fragment() {
     private lateinit var recyclerView: RecyclerView
     private val adapter = PlannedCheckItemAdapter()
 
-    private val viewModel: PlannedChecksViewModel by viewModels {
-        PlannedChecksViewModelFactory(
-            (activity?.application as BaseApplication).checkDatabase.plannedCheckDao
-        )
+    private lateinit var viewModelFactory: ViewModelFactory
+    private val viewModel: PlannedChecksViewModel by viewModels { viewModelFactory }
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        viewModelFactory =
+            (requireActivity().application as BaseApplication).appComponent.getViewModelComponent()
+                .getViewModelFactory()
     }
 
     override fun onCreateView(
@@ -50,7 +56,6 @@ class PlannedChecksFragment : Fragment() {
         viewModel.plannedChecks.observe(viewLifecycleOwner) {
             adapter.submitList(it)
         }
-
     }
 
     override fun onDestroyView() {

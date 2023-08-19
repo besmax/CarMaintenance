@@ -1,20 +1,18 @@
 package bes.max.carmaintenance.ui.checks
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import bes.max.carmaintenance.BaseApplication
 import bes.max.carmaintenance.databinding.FragmentChecksBinding
-import bes.max.carmaintenance.domain.CheckRepository
-import dagger.hilt.android.AndroidEntryPoint
-import javax.inject.Inject
 
-@AndroidEntryPoint
 class ChecksFragment : Fragment() {
 
     private var _binding: FragmentChecksBinding? = null
@@ -22,11 +20,14 @@ class ChecksFragment : Fragment() {
 
     private lateinit var recyclerView: RecyclerView
 
-    @Inject
-    lateinit var checkRepository: CheckRepository
+    private lateinit var viewModelFactory: ViewModelProvider.Factory
+    private val viewModel by activityViewModels<ChecksViewModel> { viewModelFactory }
 
-    private val viewModel: ChecksViewModel by activityViewModels {
-        ChecksViewModelFactory(checkRepository = checkRepository)
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        viewModelFactory = (requireActivity().application as BaseApplication).appComponent.getViewModelComponent()
+            .getViewModelFactory()
     }
 
     override fun onCreateView(

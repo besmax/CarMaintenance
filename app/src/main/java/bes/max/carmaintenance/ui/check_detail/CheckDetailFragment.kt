@@ -1,5 +1,6 @@
 package bes.max.carmaintenance.ui.check_detail
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -10,23 +11,24 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import bes.max.carmaintenance.BaseApplication
 import bes.max.carmaintenance.databinding.FragmentCheckDetailBinding
-import bes.max.carmaintenance.domain.CheckRepository
+import bes.max.carmaintenance.di.ViewModelFactory
 import bes.max.carmaintenance.ui.checks.ChecksViewModel
-import bes.max.carmaintenance.ui.checks.ChecksViewModelFactory
-import dagger.hilt.android.AndroidEntryPoint
-import javax.inject.Inject
 
-@AndroidEntryPoint
+
 class CheckDetailFragment : Fragment() {
 
     private var _binding: FragmentCheckDetailBinding? = null
     private val binding get() = _binding!!
 
-    @Inject
-    lateinit var checkRepository: CheckRepository
+    private lateinit var viewModelFactory: ViewModelFactory
+    private val sharedViewModel by activityViewModels<ChecksViewModel> { viewModelFactory }
 
-    private val sharedViewModel: ChecksViewModel by activityViewModels {
-        ChecksViewModelFactory(checkRepository = checkRepository)
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        viewModelFactory =
+            (requireActivity().application as BaseApplication).appComponent.getViewModelComponent()
+                .getViewModelFactory()
     }
 
     override fun onCreateView(

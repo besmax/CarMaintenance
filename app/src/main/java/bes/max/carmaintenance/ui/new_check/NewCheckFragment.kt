@@ -1,5 +1,6 @@
 package bes.max.carmaintenance.ui.new_check
 
+import android.content.Context
 import android.content.Intent
 import android.icu.util.Calendar
 import android.os.Bundle
@@ -15,29 +16,24 @@ import androidx.navigation.fragment.navArgs
 import bes.max.carmaintenance.BaseApplication
 import bes.max.carmaintenance.R
 import bes.max.carmaintenance.databinding.FragmentNewCheckBinding
-import bes.max.carmaintenance.domain.CheckRepository
+import bes.max.carmaintenance.di.ViewModelFactory
 import bes.max.carmaintenance.ui.checks.ChecksViewModel
-import bes.max.carmaintenance.ui.checks.ChecksViewModelFactory
-import dagger.hilt.android.AndroidEntryPoint
-import javax.inject.Inject
 
-@AndroidEntryPoint
 class NewCheckFragment : Fragment() {
 
     private var _binding: FragmentNewCheckBinding? = null
     private val binding get() = _binding!!
 
-    @Inject
-    lateinit var checkRepository: CheckRepository
+    private lateinit var viewModelFactory: ViewModelFactory
+    private val viewModel: ChecksViewModel by activityViewModels { viewModelFactory }
 
-    private val sharedViewModel: ChecksViewModel by activityViewModels {
-        ChecksViewModelFactory(checkRepository = checkRepository)
-    }
+    private val newCheckViewModel: NewCheckViewModel by viewModels { viewModelFactory }
 
-    private val newCheckViewModel: NewCheckViewModel by viewModels {
-        NewCheckViewModelFactory(
-            (activity?.application as BaseApplication).checkDatabase.plannedCheckDao
-        )
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        viewModelFactory =
+            (requireActivity().application as BaseApplication).appComponent.getViewModelComponent()
+                .getViewModelFactory()
     }
 
     override fun onCreateView(
@@ -59,12 +55,12 @@ class NewCheckFragment : Fragment() {
 
         binding.fragmentNewCheckChooseDate.setOnClickListener {
             showDatePickerDialog(view)
-            binding.fragmentNewCheckChooseDate.setText(sharedViewModel.date?.value)
+            binding.fragmentNewCheckChooseDate.setText(viewModel.date?.value)
         }
 
-        sharedViewModel.date.observe(viewLifecycleOwner) {
+        viewModel.date.observe(viewLifecycleOwner) {
             if (!it.isNullOrEmpty()) {
-                binding.fragmentNewCheckChooseDate.setText(sharedViewModel.date?.value)
+                binding.fragmentNewCheckChooseDate.setText(viewModel.date?.value)
             }
         }
 
@@ -75,7 +71,7 @@ class NewCheckFragment : Fragment() {
             }
             if (plannedCheckIsInserted) {
                 binding.fragmentNewCheckEditText.text?.clear()
-                sharedViewModel.date?.value = getString(R.string.fragment_new_check_choose_date)
+                viewModel.date?.value = getString(R.string.fragment_new_check_choose_date)
                 binding.fragmentNewCheckCheck.isChecked = false
             }
         }
@@ -94,7 +90,7 @@ class NewCheckFragment : Fragment() {
         ) {
             newCheckViewModel.insertPlannedCheck(
                 binding.fragmentNewCheckEditText.text.toString(),
-                sharedViewModel.date.value!!
+                viewModel.date.value!!
             )
             return true
         } else {
@@ -106,10 +102,10 @@ class NewCheckFragment : Fragment() {
 
     private fun addToCalendar() {
         if (!binding.fragmentNewCheckEditText.text.isNullOrEmpty() &&
-            sharedViewModel.date?.value != null &&
-            sharedViewModel.date?.value != getString(R.string.fragment_new_check_choose_date)
+            viewModel.date?.value != null &&
+            viewModel.date?.value != getString(R.string.fragment_new_check_choose_date)
         ) {
-            val dateList = sharedViewModel.date?.value!!.split(".")
+            val dateList = viewModel.date?.value!!.split(".")
             val begin: Long = Calendar.getInstance().run {
                 set(dateList[0].toInt(), dateList[1].toInt(), dateList[2].toInt(), 7, 0)
                 timeInMillis
