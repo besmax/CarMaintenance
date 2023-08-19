@@ -16,4 +16,6 @@ interface AppComponent {
     fun getPlannedCheckDao(): PlannedCheckDao
 
     fun getCheckRepository(): CheckRepository
+
+    fun getViewModelComponent(): ViewModelComponent
 }

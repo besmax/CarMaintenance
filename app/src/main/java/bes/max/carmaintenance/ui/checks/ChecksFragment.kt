@@ -1,11 +1,13 @@
 package bes.max.carmaintenance.ui.checks
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import bes.max.carmaintenance.BaseApplication
@@ -18,10 +20,14 @@ class ChecksFragment : Fragment() {
 
     private lateinit var recyclerView: RecyclerView
 
-    private val viewModel: ChecksViewModel by activityViewModels {
-        ChecksViewModelFactory(
-            (activity?.application as BaseApplication).appComponent.getCheckRepository()
-        )
+    private lateinit var viewModelFactory: ViewModelProvider.Factory
+    private val viewModel by activityViewModels<ChecksViewModel> { viewModelFactory }
+
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        viewModelFactory = (requireActivity().application as BaseApplication).appComponent.getViewModelComponent()
+            .getViewModelFactory()
     }
 
     override fun onCreateView(
