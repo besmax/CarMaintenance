@@ -4,7 +4,9 @@ import bes.max.carmaintenance.data.db.PlannedCheckDao
 import bes.max.carmaintenance.domain.PlannedCheckRepository
 import bes.max.carmaintenance.domain.models.PlannedCheck
 import kotlinx.coroutines.flow.Flow
+import javax.inject.Singleton
 
+@Singleton
 class PlannedCheckRepositoryImpl(
     private val plannedCheckDao: PlannedCheckDao
 ) : PlannedCheckRepository {

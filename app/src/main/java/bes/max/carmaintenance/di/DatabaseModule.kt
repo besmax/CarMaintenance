@@ -1,17 +1,20 @@
 package bes.max.carmaintenance.di
-
 import android.content.Context
 import bes.max.carmaintenance.data.db.CheckDao
 import bes.max.carmaintenance.data.db.CheckDatabase
 import bes.max.carmaintenance.data.db.PlannedCheckDao
 import dagger.Module
 import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
+import dagger.hilt.components.SingletonComponent
 
 @Module
-class DatabaseModule(private val context: Context) {
+@InstallIn(SingletonComponent::class)
+class DatabaseModule() {
 
     @Provides
-    fun provideCheckDatabase() : CheckDatabase {
+    fun provideCheckDatabase(@ApplicationContext context: Context) : CheckDatabase {
         return CheckDatabase.getInstance(context)
     }
 

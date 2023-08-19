@@ -1,12 +1,14 @@
 package bes.max.carmaintenance.data.repositories
 
-import bes.max.carmaintenance.data.db.CheckDao
 import bes.max.carmaintenance.data.NetworkClient
+import bes.max.carmaintenance.data.db.CheckDao
 import bes.max.carmaintenance.data.mappers.GoogleApiResponseMapper
-import bes.max.carmaintenance.domain.models.Check
 import bes.max.carmaintenance.domain.CheckRepository
+import bes.max.carmaintenance.domain.models.Check
 import kotlinx.coroutines.flow.Flow
+import javax.inject.Singleton
 
+@Singleton
 class ChecksRepositoryImpl(
     private val networkClient: NetworkClient,
     private val checkDao: CheckDao,

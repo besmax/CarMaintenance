@@ -7,8 +7,11 @@ import bes.max.carmaintenance.data.repositories.ChecksRepositoryImpl
 import bes.max.carmaintenance.domain.CheckRepository
 import dagger.Module
 import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.android.components.ActivityComponent
 
 @Module
+@InstallIn(ActivityComponent::class)
 class RepositoryModule {
 
     @Provides
