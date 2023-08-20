@@ -1,6 +1,5 @@
 package bes.max.carmaintenance.ui.new_check
 
-import android.content.Context
 import android.content.Intent
 import android.icu.util.Calendar
 import android.os.Bundle
@@ -13,28 +12,20 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
-import bes.max.carmaintenance.BaseApplication
 import bes.max.carmaintenance.R
 import bes.max.carmaintenance.databinding.FragmentNewCheckBinding
-import bes.max.carmaintenance.di.ViewModelFactory
 import bes.max.carmaintenance.ui.checks.ChecksViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class NewCheckFragment : Fragment() {
 
     private var _binding: FragmentNewCheckBinding? = null
     private val binding get() = _binding!!
 
-    private lateinit var viewModelFactory: ViewModelFactory
-    private val viewModel: ChecksViewModel by activityViewModels { viewModelFactory }
+    private val viewModel: ChecksViewModel by activityViewModels()
 
-    private val newCheckViewModel: NewCheckViewModel by viewModels { viewModelFactory }
-
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        viewModelFactory =
-            (requireActivity().application as BaseApplication).appComponent.getViewModelComponent()
-                .getViewModelFactory()
-    }
+    private val newCheckViewModel: NewCheckViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

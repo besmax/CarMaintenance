@@ -6,9 +6,13 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import bes.max.carmaintenance.domain.CheckRepository
 import bes.max.carmaintenance.domain.models.Check
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class ChecksViewModel(private val checkRepository: CheckRepository) : ViewModel() {
+@HiltViewModel
+class ChecksViewModel @Inject constructor(private val checkRepository: CheckRepository) :
+    ViewModel() {
 
     private val _checks = MutableLiveData<List<Check>>()
     val checks: LiveData<List<Check>> = _checks
